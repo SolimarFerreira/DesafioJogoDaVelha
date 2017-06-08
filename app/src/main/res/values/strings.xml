@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DesafioJogoDaVelha</string>
+    <string name="aguarde_sua_vez">Aguarde sua vez para jogar!</string>
+    <string name="campo_marcado">Campo já marcado! Escolha outro lugar.</string>
+    <string name="jogador_venceu">Jogador %1s venceu.</string>
+    <string name="jogo_empatado">O jogo terminou empatado.</string>
+    <string name="novo_jogo">Novo Jogo</string>
+    <string name="placar_bot">Bot: %1$d</string>
+    <string name="placar_draw">Empates: %1$d</string>
+    <string name="placar_player">Player: %1$d</string>
+</resources>
