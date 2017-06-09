@@ -7,9 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
+
+import br.com.solimar.desafiojogodavelha.util.MySharedPreferences;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -22,9 +22,8 @@ public class GameActivity extends AppCompatActivity {
     private boolean isGameOver = false;
     private Integer moves = 0;
     private String turn;
-    private Button btnNewGame;
+    private Button btnNovoJogo, btnZerarPlacar;
     private TextView tvPlayer, tvBot, tvDraw;
-    Map<String,Integer> mapPlacar = new HashMap<>();
 
     private static final int [][] winMatrix = new int[][]{
             {1,2,3},
@@ -40,21 +39,35 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        initialize();
+        addListeners();
     }
 
     private void initialize() {
-        btnNewGame = (Button)findViewById(R.id.btnNewGame);
+        btnNovoJogo = (Button)findViewById(R.id.btnNovoJogo);
+        btnZerarPlacar = (Button)findViewById(R.id.btnZerarPlacar);
         tvDraw = (TextView) findViewById(R.id.tvDraw);
         tvBot = (TextView) findViewById(R.id.tvBot);
         tvPlayer = (TextView) findViewById(R.id.tvPlayer);
-        mapPlacar.put(PLAYER,0);
-        mapPlacar.put(BOT,0);
-        mapPlacar.put(DRAW,0);
-        atualizaPlacar();
+        atualizarPlacar();
     }
 
     private void addListeners() {
-        btnNewGame.setOnClickListener(new View.OnClickListener() {
+        btnZerarPlacar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MySharedPreferences.savePlacar(GameActivity.this,BOT,0);
+                MySharedPreferences.savePlacar(GameActivity.this,DRAW,0);
+                MySharedPreferences.savePlacar(GameActivity.this,PLAYER,0);
+                atualizarPlacar();
+                turn = PLAYER;
+                isGameOver = false;
+                moves = 0;
+                clearBorad();
+            }
+        });
+
+        btnNovoJogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 turn = PLAYER;
@@ -123,24 +136,24 @@ public class GameActivity extends AppCompatActivity {
                 if(move1.equals(move2)&& move2.equals(move3)){
                     isGameOver = true;
                     Toast.makeText(GameActivity.this,getString(R.string.jogador_venceu,move1),Toast.LENGTH_LONG).show();
-                    mapPlacar.put(move1,mapPlacar.get(move1)+1);
-                    atualizaPlacar();
+                    MySharedPreferences.savePlacar(GameActivity.this,move1,MySharedPreferences.getPlacar(GameActivity.this, move1)+1);
+                    atualizarPlacar();
                 }
             }
 
         }
 
         if(moves >=9 && !isGameOver){
-            mapPlacar.put(DRAW,mapPlacar.get(DRAW)+1);
-            atualizaPlacar();
+            MySharedPreferences.savePlacar(GameActivity.this,DRAW,MySharedPreferences.getPlacar(GameActivity.this, DRAW)+1);
+            atualizarPlacar();
             Toast.makeText(GameActivity.this,R.string.jogo_empatado,Toast.LENGTH_LONG).show();
         }
     }
 
-    private void atualizaPlacar() {
-        tvBot.setText(getString(R.string.placar_bot,mapPlacar.get(BOT)));
-        tvDraw.setText(getString(R.string.placar_draw,mapPlacar.get(DRAW)));
-        tvPlayer.setText(getString(R.string.placar_player,mapPlacar.get(PLAYER)));
+    private void atualizarPlacar() {
+        tvBot.setText(getString(R.string.placar_bot,MySharedPreferences.getPlacar(GameActivity.this, BOT)));
+        tvDraw.setText(getString(R.string.placar_draw,MySharedPreferences.getPlacar(GameActivity.this, DRAW)));
+        tvPlayer.setText(getString(R.string.placar_player,MySharedPreferences.getPlacar(GameActivity.this, PLAYER)));
     }
 
     private Button getButtonBoard(int id){

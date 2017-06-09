@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/backgorund">
+    android:background="@drawable/quadronegro">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,19 +42,22 @@
             android:id="@+id/botao1"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"/>
+            android:textSize="21sp"
+            android:background="@color/translucent_white"/>
         <Button
             android:id="@+id/botao2"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"
+            android:textSize="21sp"
+            android:background="@color/translucent_white"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"/>
         <Button
             android:id="@+id/botao3"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"/>
+            android:textSize="21sp"
+            android:background="@color/translucent_white"/>
 
     </LinearLayout>
     <LinearLayout
@@ -68,19 +71,22 @@
             android:id="@+id/botao4"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"/>
+            android:textSize="21sp"
+            android:background="@color/translucent_white"/>
         <Button
             android:id="@+id/botao5"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"
+            android:textSize="21sp"
+            android:background="@color/translucent_white"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"/>
         <Button
             android:id="@+id/botao6"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"/>
+            android:textSize="21sp"
+            android:background="@color/translucent_white"/>
 
     </LinearLayout>
     <LinearLayout
@@ -92,28 +98,46 @@
             android:id="@+id/botao7"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"/>
+            android:textSize="21sp"
+            android:background="@color/translucent_white"/>
         <Button
             android:id="@+id/botao8"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"
+            android:textSize="21sp"
+            android:background="@color/translucent_white"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"/>
         <Button
             android:id="@+id/botao9"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@android:color/white"/>
+            android:textSize="21sp"
+            android:background="@color/translucent_white"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
     <Button
-        android:id="@+id/btnNewGame"
+        android:id="@+id/btnNovoJogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@android:color/white"
-        android:text="Novo Jogo"/>
+        android:text="@string/novo_jogo"/>
+
+    <Button
+        android:id="@+id/btnZerarPlacar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:text="@string/zerar_placar"/>
+        </LinearLayout>
 </LinearLayout>
